@@ -13,13 +13,14 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
-
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -51,13 +52,15 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
             // Number of Travelers spinner(dropDown menu)
             ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
-                    R.array.passenger_options, android.R.layout.simple_spinner_item);
+                    R.array.passenger_options_display, android.R.layout.simple_spinner_item);
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
             passengersSpinner.setAdapter(adapter);
+
             passengersSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                 @Override
                 public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                    int numberOfPassengers = Integer.parseInt(parent.getItemAtPosition(position).toString());
+                    // Use the corresponding values array
+                    int numberOfPassengers = Integer.parseInt(getResources().getStringArray(R.array.passenger_options_values)[position]);
                     TripState.tripDetail.setNumberOfPassengers(numberOfPassengers);
                 }
 
@@ -73,11 +76,31 @@ public class MainActivity extends Activity implements View.OnClickListener {
             nextButton.setOnClickListener(this);
             exitButton.setOnClickListener(this);
 
+            // Apply animations
+            applyAnimations();
+
             Log.d("MainActivity:onCreate", "Widgets initialized");
         } catch (Exception e) {
             Log.e("MainActivity:onCreate", "An error occurred: " + e.getMessage());
             showErrorToast("Internal Error: " + e.getMessage());
         }
+    }
+
+    private void applyAnimations() {
+        // Load animations from XML files
+        Animation planTripAnimation = AnimationUtils.loadAnimation(this, R.anim.anim_from_right);
+        Animation startDateAnimation = AnimationUtils.loadAnimation(this, R.anim.anim_from_bottom);
+        Animation endDateAnimation = AnimationUtils.loadAnimation(this, R.anim.anim_from_bottom);
+
+        // Find views
+        TextView planTripText = findViewById(R.id.planTripText);
+        TextView startDateLabel = findViewById(R.id.startDateLabel);
+        TextView endDateLabel = findViewById(R.id.endDateLabel);
+
+        // Apply animations to views
+        planTripText.startAnimation(planTripAnimation);
+        startDateLabel.startAnimation(startDateAnimation);
+        endDateLabel.startAnimation(endDateAnimation);
     }
 
     @Override

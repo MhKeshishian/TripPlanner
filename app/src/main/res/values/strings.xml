@@ -25,7 +25,7 @@
     <string name="enter_traveler_name_hint">Enter traveler\'s name</string>
     <string name="number_of_passengers_label">Passengers:</string>
     <string name="finish_button">Finish</string>
-    <string name="select_date">Select Date Below</string>
+    <string name="select_date">Select your Start and End dates</string>
     <string name="ending_on">ending on</string>
     <string name="start_date_row">Start Date:</string>
     <string name="end_date_row">End Date:</string>

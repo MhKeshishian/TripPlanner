@@ -32,8 +32,7 @@
         android:layout_below="@id/welcomeText"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="100dp"
-        android:background="#046086"
-        android:paddingVertical="08dp"
+        android:paddingVertical="8dp"
         android:text="@string/plan_trip_text"
         android:textAlignment="center"
         android:textColor="#FFFFFF"
@@ -61,7 +60,7 @@
         android:minHeight="48dp"
         android:spinnerMode="dropdown"
         android:textAlignment="center"
-        android:entries="@array/passenger_options"/>
+        android:entries="@array/passenger_options_display"/>
 
     <TextView
         android:id="@+id/selectDateBelowLabel"

@@ -24,7 +24,7 @@
             android:inputType="text"
             android:minHeight="48dp"
             android:autofillHints=""
-            android:drawableLeft="@drawable/username"
+            android:drawableStart="@drawable/username"
             android:imeOptions="actionDone"/>
 
         <EditText
@@ -35,7 +35,7 @@
             android:inputType="textPassword"
             android:minHeight="48dp"
             android:autofillHints=""
-            android:drawableLeft="@drawable/password"
+            android:drawableStart="@drawable/password"
             android:imeOptions="actionDone"/>
 
         <Button
@@ -52,7 +52,8 @@
             android:layout_height="wrap_content"
             android:text="@string/register_here"
             android:textAlignment="center"
-            android:layout_marginTop="16dp"/>
+            android:layout_marginTop="16dp"
+            android:textColor="@color/white"/>
 
     </LinearLayout>
 

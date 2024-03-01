@@ -40,9 +40,8 @@ public class TravelDB extends SQLiteOpenHelper {
         ContentValues contentValues = new ContentValues();
         contentValues.put(COL_2, user);
         contentValues.put(COL_3, password);
-        long res = db.insert(TABLE_NAME, null, contentValues);
         //db.close();
-        return res;
+        return db.insert(TABLE_NAME, null, contentValues);
     }
 
     public boolean checkUser(String username, String password) {

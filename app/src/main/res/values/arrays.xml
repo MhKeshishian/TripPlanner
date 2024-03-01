@@ -5,9 +5,14 @@
   FIRST VERSION : January 28th
   PURPOSE       : Static widget arrays, e.g., passenger count.
 -->
+
 <resources>
-    <string-array name="passenger_options">
+    <string-array name="passenger_options_values">
         <item>3</item>
         <item>4</item>
+    </string-array>
+    <string-array name="passenger_options_display">
+        <item>3 - Adults</item>
+        <item>4 - Adults</item>
     </string-array>
 </resources>

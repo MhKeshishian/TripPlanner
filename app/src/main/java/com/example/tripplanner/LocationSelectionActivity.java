@@ -12,6 +12,8 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -38,8 +40,8 @@ public class LocationSelectionActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_destination_selection);
 
-        // Initialize views
 
+        // Initialize views
         RadioGroup locationRadioGroup = findViewById(R.id.locationRadioGroup);
         Button backButton = findViewById(R.id.backButton);
         confirmButton = findViewById(R.id.confirmButton);
@@ -60,7 +62,22 @@ public class LocationSelectionActivity extends Activity {
 
         backButton.setOnClickListener(v -> onBackButtonClick());
         confirmButton.setOnClickListener(v -> onConfirmButtonClick());
+
+        // Apply animations
+        applyAnimations();
     }
+
+    private void applyAnimations() {
+        // Load animations from XML files
+        Animation planTripAnimation = AnimationUtils.loadAnimation(this, R.anim.anim_from_right);
+
+        // Find views
+        TextView planTripText = findViewById(R.id.instructionText);
+
+        // Apply animations to views
+        planTripText.startAnimation(planTripAnimation);
+    }
+
 
     /**
      * FUNCTION      : onBackButtonClick
