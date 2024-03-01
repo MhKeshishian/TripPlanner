@@ -13,6 +13,8 @@ import android.app.AlertDialog;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -78,6 +80,32 @@ public class TravelerInfoActivity extends Activity {
         // Set checkBox listener
         CheckBox insuranceCheckBox = findViewById(R.id.insuranceCheckBox);
         insuranceCheckBox.setOnCheckedChangeListener((buttonView, isChecked) -> updateTotalPrice(isChecked));
+
+        // Apply animations
+        applyAnimations();
+    }
+
+    private void applyAnimations() {
+        // Load animations from XML files
+        Animation planTripAnimation = AnimationUtils.loadAnimation(this, R.anim.anim_from_right);
+        Animation numberOfPassengers = AnimationUtils.loadAnimation(this, R.anim.anim_from_right);
+        Animation totalPrice = AnimationUtils.loadAnimation(this, R.anim.anim_from_right);
+        Animation startDate = AnimationUtils.loadAnimation(this, R.anim.anim_from_right);
+        Animation endDate = AnimationUtils.loadAnimation(this, R.anim.anim_from_right);
+
+        // Find views
+        TextView planTripText = findViewById(R.id.selectedDestination);
+        TextView passengers = findViewById(R.id.selectedNumberOfPassengers);
+        TextView price = findViewById(R.id.totalPrice);
+        TextView start = findViewById(R.id.startDateText);
+        TextView end = findViewById(R.id.endDateText);
+
+        // Apply animations to views
+        planTripText.startAnimation(planTripAnimation);
+        passengers.startAnimation(numberOfPassengers);
+        price.startAnimation(totalPrice);
+        start.startAnimation(startDate);
+        end.startAnimation(endDate);
     }
 
     /**

@@ -72,8 +72,7 @@
         android:layout_marginTop="100dp"
         android:text="@string/select_date"
         android:textAlignment="center"
-        style="@style/InfoText"
-        android:textColor="@color/light_yellow"/>
+        style="@style/InfoText"/>
 
 <!-- TextView can be used as Button by making it clickable-->
     <TextView

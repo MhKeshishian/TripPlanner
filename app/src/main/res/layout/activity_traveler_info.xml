@@ -46,9 +46,8 @@
         android:layout_alignTop="@+id/destinationLabel"
         android:layout_alignParentEnd="true"
         android:textStyle="normal"
-        android:textColor="#000000"
-        android:textSize="20sp"
-        android:textAlignment="textStart"/>
+        android:textAlignment="textStart"
+        style="@style/InfoText"/>
 
     <TextView
         android:id="@+id/numberOfPassengersLabel"
@@ -68,9 +67,8 @@
         android:layout_marginStart="70dp"
         android:layout_marginTop="20dp"
         android:layout_toEndOf="@+id/numberOfPassengersLabel"
-        android:textColor="#000000"
-        android:textSize="20sp"
-        android:textAlignment="textStart"/>
+        android:textAlignment="textStart"
+        style="@style/InfoText"/>
 
     <TextView
         android:id="@+id/priceLabel"
@@ -90,9 +88,8 @@
         android:layout_marginStart="130dp"
         android:layout_marginTop="20dp"
         android:layout_toEndOf="@+id/priceLabel"
-        android:textColor="#000000"
-        android:textSize="20sp"
-        android:textAlignment="textStart"/>
+        android:textAlignment="textStart"
+        style="@style/InfoText"/>
 
     <!-- Of course, all table rows and columns
     can be implemented inside the parent RelativeLayout,
@@ -103,22 +100,28 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/priceLabel"
         android:layout_marginTop="40dp">
-        <TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
             <TextView
-                android:text="@string/start_date_row"
+                style="@style/InfoText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="8dp"
-                style="@style/InfoText"/>
+                android:text="@string/start_date_row" />
+
             <TextView
                 android:id="@+id/startDateText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="8dp"
-                android:textSize="20sp"
                 android:textColor="#FFFFFF"
-                android:textStyle="bold"/>
+                android:textSize="20sp"
+                android:textStyle="bold" />
         </TableRow>
+
         <TableRow>
             <TextView
                 android:text="@string/end_date_row"
