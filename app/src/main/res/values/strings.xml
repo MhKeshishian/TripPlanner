@@ -42,9 +42,9 @@
     <string name="register">Register</string>
     <string name="login_here">Already have an account? Login here</string>
     <string name="register_here">Not registered? Register here</string>
-    <string name="password_field">Password</string>
-    <string name="username_field">Username</string>
-    <string name="confirm_password">Confirm Password</string>
+    <string name="password_field">  Password</string>
+    <string name="username_field">  Username</string>
+    <string name="confirm_password">  Confirm Password</string>
 
 
 </resources>
