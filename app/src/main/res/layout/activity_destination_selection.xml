@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  FILE          : activity_destination_selection.xml
+  AUTHORS       : Mher Keshishian
+  FIRST VERSION : January 27th
+  PURPOSE       : Choose destination activity layout.
+-->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/activity_destination_selection"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/page1"
+    android:paddingBottom="16dp"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:paddingTop="16dp">
+
+    <TextView
+        android:id="@+id/instructionText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/select_destination"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        style="@style/TitleText"/>
+
+    <ScrollView
+        android:id="@+id/destinationScrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="60dp"
+        android:layout_below="@id/instructionText"
+        android:layout_marginTop="10dp">
+
+        <RadioGroup
+            android:id="@+id/locationRadioGroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="10dp">
+
+
+            <RadioButton
+                android:id="@+id/niagaraRadio"
+                style="@style/RadioButtonText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="48dp"
+                android:text="@string/niagara_label"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:cardCornerRadius="25dp"
+                    android:elevation="10dp">
+
+                    <ImageView
+                        android:id="@+id/niagaraImage"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/niagara"
+                        android:contentDescription="@string/niagara_description"
+                        android:scaleType="centerCrop"/>
+
+                    <TextView
+                        android:id="@+id/niagaraInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="330dp"
+                        android:textStyle="bold"
+                        style="@style/TextViewStyle"/>
+
+                    <TextView
+                        android:id="@+id/niagaraName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/niagaraInfo"
+                        android:text="Niagara"
+                        style="@style/TextViewStyle"
+                        android:layout_marginTop="5dp"/>
+
+                </androidx.cardview.widget.CardView>
+
+
+
+            </LinearLayout>
+
+            <RadioButton
+                android:id="@+id/miamiRadio"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:minHeight="48dp"
+                android:text="@string/miami_label"
+                style="@style/RadioButtonText"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:cardCornerRadius="25dp"
+                    android:elevation="10dp">
+
+                    <ImageView
+                        android:id="@+id/miamiImage"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:src ="@drawable/miami"
+                        android:contentDescription="@string/miami_description"
+                        android:scaleType="centerCrop"/>
+
+                    <TextView
+                        android:id="@+id/miamiInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="330dp"
+                        android:textStyle="bold"
+                        style="@style/TextViewStyle"/>
+
+                    <TextView
+                        android:id="@+id/miamiName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/miamiInfo"
+                        android:text="Miami"
+                        style="@style/TextViewStyle"
+                        android:layout_marginTop="5dp"/>
+            </androidx.cardview.widget.CardView>
+
+            </LinearLayout>
+
+            <RadioButton
+                android:id="@+id/lasVegasRadio"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:minHeight="48dp"
+                android:text="@string/las_vegas_label"
+                style="@style/RadioButtonText"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:cardCornerRadius="25dp"
+                    android:elevation="10dp">
+
+                    <ImageView
+                        android:id="@+id/lasVegasImage"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:contentDescription="@string/las_vegas_description"
+                        android:src="@drawable/las_vegas"
+                        android:scaleType="centerCrop"/>
+
+                    <TextView
+                        android:id="@+id/lasVegasInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="330dp"
+                        android:textStyle="bold"
+                        style="@style/TextViewStyle"/>
+
+                    <TextView
+                        android:id="@+id/lasVegasName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/lasVegasInfo"
+                        android:text="Las Vegas"
+                        style="@style/TextViewStyle"
+                        android:layout_marginTop="5dp"/>
+
+                </androidx.cardview.widget.CardView>
+
+
+            </LinearLayout>
+
+        </RadioGroup>
+
+
+    </ScrollView>
+
+
+    <Button
+        android:id="@+id/backButton"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:text="@string/back"
+        android:textColor="#ffffff"
+        android:background="@drawable/my_button_gray"
+        android:layout_below="@id/instructionText"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignTop="@+id/confirmButton"/>
+
+    <Button
+        android:id="@+id/confirmButton"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:text="@string/confirm"
+        android:textColor="#ffffff"
+        android:background="@drawable/my_button"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="5dp"/>
+</RelativeLayout>

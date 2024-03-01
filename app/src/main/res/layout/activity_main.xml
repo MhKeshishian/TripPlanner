@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  FILE          : activity_main.xml
+  AUTHORS       : Mher Keshishian
+  FIRST VERSION : January 27th
+  PURPOSE       : Main menu activity layout.
+-->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/page1"
+    android:paddingBottom="16dp"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:paddingTop="16dp"
+    android:theme="@style/Theme.TripPlanner">
+
+    <TextView
+        android:id="@+id/welcomeText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/welcome_message"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        style="@style/TitleText"/>
+
+    <TextView
+        android:id="@+id/planTripText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/welcomeText"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="100dp"
+        android:background="#046086"
+        android:paddingVertical="08dp"
+        android:text="@string/plan_trip_text"
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        android:textSize="22sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/passengersLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/passengers_label"
+        android:layout_alignParentStart="true"
+        android:layout_below="@id/planTripText"
+        android:layout_marginTop="32dp"
+        style="@style/InfoText"/>
+
+    <Spinner
+        android:id="@+id/passengersSpinner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/passengersLabel"
+        android:layout_alignParentEnd="true"
+        android:clickable="true"
+        android:focusable="true"
+        android:minHeight="48dp"
+        android:spinnerMode="dropdown"
+        android:textAlignment="center"
+        android:entries="@array/passenger_options"/>
+
+    <TextView
+        android:id="@+id/selectDateBelowLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/passengersLabel"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="100dp"
+        android:text="@string/select_date"
+        android:textAlignment="center"
+        style="@style/InfoText"
+        android:textColor="@color/light_yellow"/>
+
+<!-- TextView can be used as Button by making it clickable-->
+    <TextView
+        android:id="@+id/startDateLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:textColor="@color/black"
+        android:background="@drawable/my_button_gray"
+        android:gravity="center_vertical"
+        android:text="@string/start_date_label"
+        android:textSize="20sp"
+        android:layout_below="@id/passengersLabel"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="135dp"
+        android:paddingHorizontal="10dp"
+        android:clickable="true"
+        android:focusable="true" />
+
+    <TextView
+        android:id="@+id/endingOn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/selectDateBelowLabel"
+        android:layout_marginTop="32dp"
+        android:layout_toStartOf="@+id/endDateLabel"
+        android:layout_toEndOf="@+id/startDateLabel"
+        android:text="@string/ending_on"
+        android:textAlignment="center"
+        android:layout_alignBaseline="@+id/startDateLabel"
+        style="@style/InfoText"/>
+
+    <TextView
+        android:id="@+id/endDateLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:text="@string/end_date_label"
+        android:textSize="20sp"
+        android:textColor="@color/black"
+        android:background="@drawable/my_button_gray"
+        android:gravity="center_vertical"
+        android:layout_below="@id/passengersSpinner"
+        android:layout_alignParentEnd="true"
+        android:layout_alignTop="@+id/startDateLabel"
+        android:paddingHorizontal="10dp"
+        android:clickable="true"
+        android:focusable="true"/>
+
+    <Button
+        android:id="@+id/exitButton"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:text="@string/exit_button"
+        android:textColor="#ffffff"
+        android:background="@drawable/my_button_gray"
+        android:layout_below="@id/endDateLabel"
+        android:layout_alignParentStart="true"
+        android:layout_alignTop="@+id/nextButton"/>
+
+    <Button
+        android:id="@+id/nextButton"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="5dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/my_button"
+        android:text="@string/next_button"
+        android:textColor="#ffffff" />
+
+</RelativeLayout>

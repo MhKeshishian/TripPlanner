@@ -1,0 +1,5 @@
+[
+  {"name": "Niagara", "price": 100, "radioButtonId": "niagaraRadio"},
+  {"name": "Miami", "price": 200, "radioButtonId": "miamiRadio"},
+  {"name": "Las Vegas", "price": 160, "radioButtonId": "lasVegasRadio"}
+]

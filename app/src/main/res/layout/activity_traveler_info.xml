@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  FILE          : activity_traveler_info.xml
+  AUTHORS       : Mher Keshishian
+  FIRST VERSION : January 27th
+  PURPOSE       : Final check-in activity layout.
+-->
+
+
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_traveler_info"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/page1"
+    android:paddingBottom="16dp"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:paddingTop="16dp">
+
+    <TextView
+        android:id="@+id/tripItineraryTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/trip_itinerary_title"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        style="@style/TitleText"
+        tools:ignore="RelativeOverlap" />
+
+    <TextView
+        android:id="@+id/destinationLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/destination_label"
+        android:layout_below="@id/tripItineraryTitle"
+        android:layout_marginTop="42dp"
+        style="@style/InfoText"/>
+
+    <TextView
+        android:id="@+id/selectedDestination"
+        android:layout_width="200dp"
+        android:layout_height="30dp"
+        android:layout_below="@id/tripItineraryTitle"
+        android:layout_alignTop="@+id/destinationLabel"
+        android:layout_alignParentEnd="true"
+        android:textStyle="normal"
+        android:textColor="#000000"
+        android:textSize="20sp"
+        android:textAlignment="textStart"/>
+
+    <TextView
+        android:id="@+id/numberOfPassengersLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/destinationLabel"
+        android:layout_marginTop="22dp"
+        android:text="@string/number_of_passengers_label"
+        style="@style/InfoText"/>
+
+    <TextView
+        android:id="@+id/selectedNumberOfPassengers"
+        android:layout_width="200dp"
+        android:layout_height="30dp"
+        android:layout_below="@+id/selectedDestination"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="70dp"
+        android:layout_marginTop="20dp"
+        android:layout_toEndOf="@+id/numberOfPassengersLabel"
+        android:textColor="#000000"
+        android:textSize="20sp"
+        android:textAlignment="textStart"/>
+
+    <TextView
+        android:id="@+id/priceLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/numberOfPassengersLabel"
+        android:layout_marginTop="22dp"
+        android:text="@string/price"
+        style="@style/InfoText"/>
+
+    <TextView
+        android:id="@+id/totalPrice"
+        android:layout_width="200dp"
+        android:layout_height="30dp"
+        android:layout_below="@+id/numberOfPassengersLabel"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="130dp"
+        android:layout_marginTop="20dp"
+        android:layout_toEndOf="@+id/priceLabel"
+        android:textColor="#000000"
+        android:textSize="20sp"
+        android:textAlignment="textStart"/>
+
+    <!-- Of course, all table rows and columns
+    can be implemented inside the parent RelativeLayout,
+    but it TableLayout is here used for demonstration -->
+    <TableLayout
+        android:id="@+id/datesTable"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/priceLabel"
+        android:layout_marginTop="40dp">
+        <TableRow>
+            <TextView
+                android:text="@string/start_date_row"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="8dp"
+                style="@style/InfoText"/>
+            <TextView
+                android:id="@+id/startDateText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="8dp"
+                android:textSize="20sp"
+                android:textColor="#FFFFFF"
+                android:textStyle="bold"/>
+        </TableRow>
+        <TableRow>
+            <TextView
+                android:text="@string/end_date_row"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="8dp"
+                style="@style/InfoText"/>
+            <TextView
+                android:id="@+id/endDateText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="8dp"
+                android:textSize="20sp"
+                android:textColor="#FFFFFF"
+                android:textStyle="bold"/>
+        </TableRow>
+    </TableLayout>
+
+    <TextView
+        android:id="@+id/travelerNameLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/traveler_name_label"
+        android:layout_below="@id/datesTable"
+        android:layout_marginTop="42dp"
+        style="@style/InfoText"/>
+
+    <EditText
+        android:id="@+id/travelerNameEditText"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/travelerNameLabel"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="22dp"
+        android:autofillHints="name"
+        android:background="#FFFFFF"
+        android:hint="@string/enter_traveler_name_hint"
+        android:inputType="text"
+        android:minHeight="48dp"
+        android:paddingHorizontal="5dp"
+        android:textColor="#000000"
+        android:textSize="20sp"/>
+
+    <CheckBox
+        android:id="@+id/insuranceCheckBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/travelerNameEditText"
+        android:layout_marginTop="20dp"
+        android:minHeight="48dp"
+        android:text="@string/Insurance"
+        android:textColor="@color/light_yellow"
+        style="@style/InfoText"/>
+
+
+    <Button
+        android:id="@+id/backButton"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/finishButton"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="5dp"
+        android:background="@drawable/my_button_gray"
+        android:text="@string/back"
+        android:textColor="#FFFFFF" />
+
+    <Button
+        android:id="@+id/finishButton"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:text="@string/finish_button"
+        android:textColor="#FFFFFF"
+        android:background="@drawable/my_button"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="5dp"/>
+</RelativeLayout>

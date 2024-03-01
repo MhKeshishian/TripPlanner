@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  FILE          : arrays.xml
+  AUTHORS       : Mher Keshishian
+  FIRST VERSION : January 28th
+  PURPOSE       : Static widget arrays, e.g., passenger count.
+-->
+<resources>
+    <string-array name="passenger_options">
+        <item>3</item>
+        <item>4</item>
+    </string-array>
+</resources>
