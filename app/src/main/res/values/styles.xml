@@ -45,4 +45,18 @@
         <item name="android:textStyle">bold</item>
         <item name="android:textColor">@color/white</item>
     </style>
+
+    <!-- CardView Style -->
+    <style name="CommonCardViewStyle">
+        <item name="cardCornerRadius">25dp</item>
+        <item name="cardElevation">10dp</item>
+    </style>
+
+    <!--Buttons Style -->
+    <style name="MyButtonStyle">
+        <item name="android:layout_width">120dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">#ffffff</item>
+        <item name="android:gravity">center</item>
+    </style>
 </resources>

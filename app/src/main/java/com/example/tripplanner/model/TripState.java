@@ -5,7 +5,7 @@
  * PURPOSE       : Temporary data storage between activities.
  */
 
-package com.example.tripplanner;
+package com.example.tripplanner.model;
 
 public class TripState {
     public static TripDetail tripDetail = new TripDetail();

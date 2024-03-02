@@ -9,6 +9,8 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.tripplanner.database.TravelDB;
+
 public class RegisterActivity extends AppCompatActivity {
 
     private EditText usernameEditText, passwordEditText, confirmPasswordEditText;

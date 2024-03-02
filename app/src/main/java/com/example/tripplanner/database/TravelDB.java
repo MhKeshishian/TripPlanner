@@ -1,4 +1,4 @@
-package com.example.tripplanner;
+package com.example.tripplanner.database;
 
 import android.content.ContentValues;
 import android.content.Context;

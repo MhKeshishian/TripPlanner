@@ -188,37 +188,33 @@
 
     <Button
         android:id="@+id/checkDealsButton"
-        android:layout_width="120dp"
-        android:layout_height="wrap_content"
+        style="@style/MyButtonStyle"
         android:layout_below="@id/insuranceCheckBox"
         android:layout_marginStart="10dp"
         android:layout_toEndOf="@+id/dealsInfoText"
         android:text="@string/check"
         android:background="@drawable/my_button_gray"
-        android:textColor="#FFFFFF"
-        android:onClick="onCheckDealsButtonClick"/>
+        android:onClick="onCheckDealsButtonClick" />
+
 
     <Button
         android:id="@+id/backButton"
-        android:layout_width="120dp"
-        android:layout_height="wrap_content"
+        style="@style/MyButtonStyle"
+        android:text="@string/back"
+        android:background="@drawable/my_button_gray"
         android:layout_alignTop="@+id/finishButton"
         android:layout_alignParentStart="true"
         android:layout_marginStart="16dp"
-        android:layout_marginBottom="5dp"
-        android:background="@drawable/my_button_gray"
-        android:text="@string/back"
-        android:textColor="#FFFFFF" />
+        android:layout_marginBottom="5dp" />
 
     <Button
         android:id="@+id/finishButton"
-        android:layout_width="120dp"
-        android:layout_height="wrap_content"
+        style="@style/MyButtonStyle"
         android:text="@string/finish_button"
-        android:textColor="#FFFFFF"
         android:background="@drawable/my_button"
         android:layout_centerHorizontal="true"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginBottom="5dp"/>
+        android:layout_marginBottom="5dp" />
+
 </RelativeLayout>

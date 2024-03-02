@@ -5,7 +5,7 @@
  * PURPOSE       : Passenger information.
  */
 
-package com.example.tripplanner;
+package com.example.tripplanner.model;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
 

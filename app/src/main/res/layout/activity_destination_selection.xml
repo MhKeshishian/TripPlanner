@@ -82,8 +82,7 @@
                     android:id="@+id/cardView1"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    app:cardCornerRadius="25dp"
-                    android:elevation="10dp">
+                    style="@style/CommonCardViewStyle">
 
                     <ImageView
                         android:id="@+id/niagaraImage"
@@ -139,8 +138,7 @@
                     android:id="@+id/cardView2"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    app:cardCornerRadius="25dp"
-                    android:elevation="10dp">
+                    style="@style/CommonCardViewStyle">
 
                     <ImageView
                         android:id="@+id/miamiImage"
@@ -193,8 +191,7 @@
                     android:id="@+id/cardView3"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    app:cardCornerRadius="25dp"
-                    android:elevation="10dp">
+                    style="@style/CommonCardViewStyle">
 
                     <ImageView
                         android:id="@+id/lasVegasImage"
@@ -236,10 +233,8 @@
 
     <Button
         android:id="@+id/backButton"
-        android:layout_width="120dp"
-        android:layout_height="wrap_content"
+        style="@style/MyButtonStyle"
         android:text="@string/back"
-        android:textColor="#ffffff"
         android:background="@drawable/my_button_gray"
         android:layout_below="@id/instructionText"
         android:layout_centerHorizontal="true"
@@ -248,10 +243,8 @@
 
     <Button
         android:id="@+id/confirmButton"
-        android:layout_width="120dp"
-        android:layout_height="wrap_content"
+        style="@style/MyButtonStyle"
         android:text="@string/confirm"
-        android:textColor="#ffffff"
         android:background="@drawable/my_button"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"

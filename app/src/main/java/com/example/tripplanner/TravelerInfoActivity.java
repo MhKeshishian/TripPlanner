@@ -24,6 +24,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.tripplanner.model.TripDetail;
+import com.example.tripplanner.model.TripState;
+
 import java.text.SimpleDateFormat;
 import java.util.Locale;
 

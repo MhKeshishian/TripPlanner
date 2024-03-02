@@ -19,6 +19,9 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.tripplanner.model.DestinationModel;
+import com.example.tripplanner.model.TripState;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -169,7 +172,7 @@ public class LocationSelectionActivity extends Activity {
         @Override
         protected void onPreExecute() {
             // Set the initial time for the countdown (1 hour)
-            startTimeMillis = System.currentTimeMillis() + 3600000;
+            startTimeMillis = System.currentTimeMillis() + 4360000;
         }
         @Override
         protected Void doInBackground(Void... voids) {

@@ -22,6 +22,8 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.tripplanner.model.TripState;
+
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
