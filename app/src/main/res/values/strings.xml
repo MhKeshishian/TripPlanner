@@ -22,7 +22,7 @@
     <string name="destination_label">Destination:</string>
     <string name="duration_label">Duration of Stay:</string>
     <string name="traveler_name_label">Traveler\'s Name:</string>
-    <string name="enter_traveler_name_hint">Enter traveler\'s name</string>
+    <string name="enter_traveler_name_hint">Enter your name</string>
     <string name="number_of_passengers_label">Passengers:</string>
     <string name="finish_button">Finish</string>
     <string name="select_date">Select your Start and End dates</string>
@@ -45,6 +45,9 @@
     <string name="password_field">  Password</string>
     <string name="username_field">  Username</string>
     <string name="confirm_password">  Confirm Password</string>
+    <string name="check">Check</string>
+    <string name="check_other_deals_on_expedia">Check other deals on Expedia</string>
+    <string name="_15_off">15% off</string>
 
 
 </resources>

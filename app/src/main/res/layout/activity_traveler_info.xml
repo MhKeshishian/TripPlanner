@@ -177,6 +177,26 @@
         android:textColor="@color/light_yellow"
         style="@style/InfoText"/>
 
+    <TextView
+        android:id="@+id/dealsInfoText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/insuranceCheckBox"
+        android:layout_marginTop="10dp"
+        android:text="@string/check_other_deals_on_expedia"
+        style="@style/InfoText"/>
+
+    <Button
+        android:id="@+id/checkDealsButton"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/insuranceCheckBox"
+        android:layout_marginStart="10dp"
+        android:layout_toEndOf="@+id/dealsInfoText"
+        android:text="@string/check"
+        android:background="@drawable/my_button_gray"
+        android:textColor="#FFFFFF"
+        android:onClick="onCheckDealsButtonClick"/>
 
     <Button
         android:id="@+id/backButton"

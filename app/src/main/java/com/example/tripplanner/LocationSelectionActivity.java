@@ -29,6 +29,8 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class LocationSelectionActivity extends Activity {
     private Button confirmButton;
@@ -136,6 +138,7 @@ public class LocationSelectionActivity extends Activity {
             return loadDestinationsFromJson();
         }
 
+        @SuppressLint("SetTextI18n")
         @Override
         protected void onPostExecute(List<DestinationModel> result) {
             // Store destination data
@@ -155,10 +158,71 @@ public class LocationSelectionActivity extends Activity {
                     }
                 }
             }
+            // Start the countdown timer
+            new CountdownTimerTask().execute();
+        }
+    }
+
+    private class CountdownTimerTask extends AsyncTask<Void, Long, Void> {
+        private long startTimeMillis;
+
+        @Override
+        protected void onPreExecute() {
+            // Set the initial time for the countdown (1 hour)
+            startTimeMillis = System.currentTimeMillis() + 3600000;
+        }
+        @Override
+        protected Void doInBackground(Void... voids) {
+            Timer timer = new Timer(true);
+
+            TimerTask task = new TimerTask() {
+                @Override
+                public void run() {
+                    long currentTimeMillis = System.currentTimeMillis();
+                    long remainingTimeMillis = startTimeMillis - currentTimeMillis;
+
+                    if (remainingTimeMillis <= 0) {
+                        // Timer finished, you can handle this as needed
+                        timer.cancel();
+                    } else {
+                        // Update the UI with the remaining time
+                        publishProgress(remainingTimeMillis);
+                    }
+                }
+            };
+
+            timer.schedule(task, 0, 1000);
+
+            return null;
         }
 
+        @Override
+        protected void onProgressUpdate(Long... values) {
+            // Update the UI with the remaining time
+            updateCountdownTimer(values[0]);
+        }
 
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            // You can perform any cleanup or final UI updates here
+        }
     }
+
+    private void updateCountdownTimer(long remainingTimeMillis) {
+        runOnUiThread(() -> {
+            // Convert remaining time to hours, minutes, and seconds
+            long hours = remainingTimeMillis / 3600000;
+            long minutes = (remainingTimeMillis % 3600000) / 60000;
+            long seconds = (remainingTimeMillis % 60000) / 1000;
+
+            // Update the TextView with the remaining time
+            TextView countdownTextView = findViewById(R.id.countdownTextView);
+            countdownTextView.setText("Deals end in: " + String.format("%02d:%02d:%02d", hours, minutes, seconds));
+        });
+    }
+
+
+
 
     private TextView getDestinationNameView(int radioButtonId) {
         // You should implement a method to dynamically get TextView based on the radio button ID

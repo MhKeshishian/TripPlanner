@@ -10,9 +10,12 @@ package com.example.tripplanner;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
@@ -106,6 +109,20 @@ public class TravelerInfoActivity extends Activity {
         price.startAnimation(totalPrice);
         start.startAnimation(startDate);
         end.startAnimation(endDate);
+    }
+
+    /**
+     * FUNCTION      : onCheckDealsButtonClick
+     * PURPOSE       : Handles the click event for the "Check Deals" button.
+     *                 Opens the Expedia webpage.
+     * PARAMETERS    : view - The View that was clicked.
+     * RETURN        : void
+     */
+    public void onCheckDealsButtonClick(View view) {
+        // Open the Expedia webpage deals
+        String url = "https://www.expedia.ca/deals";
+        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+        startActivity(intent);
     }
 
     /**
