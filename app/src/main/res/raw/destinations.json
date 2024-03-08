@@ -1,5 +1,8 @@
 [
-  {"name": "Niagara", "price": 100, "radioButtonId": "niagaraRadio"},
-  {"name": "Miami", "price": 200, "radioButtonId": "miamiRadio"},
-  {"name": "Las Vegas", "price": 160, "radioButtonId": "lasVegasRadio"}
+  {"name": "Niagara", "price": 75, "description": "Visit the majestic Niagara Falls."},
+  {"name": "Miami", "price": 110, "description": "Experience the vibrant culture and beautiful beaches of Miami."},
+  {"name": "Las Vegas", "price": 125, "description": "Explore the dazzling lights and entertainment of Las Vegas."},
+  {"name": "London", "price": 130, "description": "Discover the rich history and landmarks of London."},
+  {"name": "Sydney", "price": 145, "description": "Enjoy the stunning views and iconic attractions of Sydney."},
+  {"name": "Kuala Lumpur", "price": 120, "description": "Experience the blend of modern and traditional in Kuala Lumpur."}
 ]

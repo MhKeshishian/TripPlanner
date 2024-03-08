@@ -15,7 +15,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
@@ -34,12 +33,6 @@ public class TravelerInfoActivity extends Activity {
     private Button finishButton;
     private static final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
 
-    /**
-     * FUNCTION      : onCreate
-     * PURPOSE       : Called when the activity is first created.
-     * PARAMETER     : savedInstanceState - The saved instance state Bundle.
-     * RETURN        : void
-     */
     @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,12 +48,25 @@ public class TravelerInfoActivity extends Activity {
         Button backButton = findViewById(R.id.backButton);
         finishButton = findViewById(R.id.finishButton);
 
+        Intent intent = getIntent();
+        if (intent != null) {
+            // Retrieve selected location name and total price
+            String selectedLocationName = intent.getStringExtra("selectedLocationName");
+            long totalPrice = intent.getLongExtra("totalPrice", 0);
+
+            selectedDestination.setText(selectedLocationName);
+            priceText.setText("$" + totalPrice);
+
+            // Set the total price in TripDetail
+            TripState.tripDetail.setTotalPrice(totalPrice);
+        }
+
+        TripDetail tripDetail = TripState.tripDetail;
         // Autofill Traveler`s information (Name should be filled later)
         selectedDestination.setText(TripState.tripDetail.getLocation().getName());
         selectedNumberOfPassengers.setText(String.valueOf(TripState.tripDetail.getNumberOfPassengers()));
         startDateText.setText(dateFormat.format(TripState.tripDetail.getStartDate()));
         endDateText.setText(dateFormat.format(TripState.tripDetail.getEndDate()));
-        priceText.setText("$" + TripState.tripDetail.getTotalPrice());
 
         // Set a listener for passenger's name
         travelerNameEditText.addTextChangedListener(new TextWatcher() {
@@ -81,11 +87,12 @@ public class TravelerInfoActivity extends Activity {
 
         // Set click listeners
         backButton.setOnClickListener(v -> onBackButtonClick());
-        Button finishButton = findViewById(R.id.finishButton);
         finishButton.setOnClickListener(v -> onFinishButtonClick());
-        // Set checkBox listener
         CheckBox insuranceCheckBox = findViewById(R.id.insuranceCheckBox);
         insuranceCheckBox.setOnCheckedChangeListener((buttonView, isChecked) -> updateTotalPrice(isChecked));
+        Button checkDealsButton = findViewById(R.id.checkDealsButton);
+        checkDealsButton.setOnClickListener(v -> onCheckDealsButtonClick());
+
 
         // Apply animations
         applyAnimations();
@@ -121,7 +128,7 @@ public class TravelerInfoActivity extends Activity {
      * PARAMETERS    : view - The View that was clicked.
      * RETURN        : void
      */
-    public void onCheckDealsButtonClick(View view) {
+    public void onCheckDealsButtonClick() {
         // Open the Expedia webpage deals
         String url = "https://www.expedia.ca/deals";
         Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
@@ -201,7 +208,7 @@ public class TravelerInfoActivity extends Activity {
     }
 
 
-        /**
+    /**
          * FUNCTION      : onPassengerInfoDialogClose
          * PURPOSE       : Handles the close event for the passenger information dialog.
          *                 Finishes the current activity and closes the application.

@@ -7,6 +7,8 @@
 
 package com.example.tripplanner;
 
+import static com.example.tripplanner.model.TripState.tripDetail;
+
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
@@ -15,29 +17,22 @@ import android.os.Bundle;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
-import android.widget.RadioGroup;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.tripplanner.model.DestinationModel;
-import com.example.tripplanner.model.TripState;
+import com.example.tripplanner.repository.DestinationDataProvider;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
 public class LocationSelectionActivity extends Activity {
+
     private Button confirmButton;
-    private List<DestinationModel> destinationModels; // Added to store destination data
+    private List<DestinationModel> destinationModels;
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -45,31 +40,24 @@ public class LocationSelectionActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_destination_selection);
 
+        initializeViews();
+        setEventListeners();
+        loadDestinationsAsync();
+        applyAnimations();
+    }
 
-        // Initialize views
-        RadioGroup locationRadioGroup = findViewById(R.id.locationRadioGroup);
+    private void initializeViews() {
         Button backButton = findViewById(R.id.backButton);
-        confirmButton = findViewById(R.id.confirmButton);
+    }
 
-        // Load destination details asynchronously
-        new LoadDestinationsTask().execute();
-
-        // Event Listeners
-        locationRadioGroup.setOnCheckedChangeListener((group, checkedId) -> {
-            confirmButton.setEnabled(true);
-
-            DestinationModel selectedDestination = getSelectedDestination(checkedId);
-
-            if (selectedDestination != null) {
-                TripState.tripDetail.setLocation(selectedDestination);
-            }
-        });
+    private void setEventListeners() {
+        Button backButton = findViewById(R.id.backButton);
 
         backButton.setOnClickListener(v -> onBackButtonClick());
-        confirmButton.setOnClickListener(v -> onConfirmButtonClick());
+    }
 
-        // Apply animations
-        applyAnimations();
+    private void loadDestinationsAsync() {
+        new LoadDestinationsTask().execute();
     }
 
     private void applyAnimations() {
@@ -83,97 +71,86 @@ public class LocationSelectionActivity extends Activity {
         planTripText.startAnimation(planTripAnimation);
     }
 
+    private void onRecyclerViewItemClick(int position, int checkedId) {
+        DestinationModel selectedDestination = destinationModels.get(position);
+        Intent intent = new Intent(LocationSelectionActivity.this, DetailActivity.class);
+        intent.putExtra("title", selectedDestination.getName());
+        intent.putExtra("description", selectedDestination.getDescription());
+        intent.putExtra("imageResourceId", selectedDestination.getDataImage());
+        intent.putExtra("totalPrice", selectedDestination.getTotalPrice());
+        startActivity(intent);
+    }
 
-    /**
-     * FUNCTION      : onBackButtonClick
-     * PURPOSE       : Handles the click event for the back button.
-     * Finishes the current activity and returns to the previous screen.
-     * RETURN        : void
-     */
+
     public void onBackButtonClick() {
         finish();
-    }
-
-    /**
-     * FUNCTION      : onConfirmButtonClick
-     * PURPOSE       : Handles the click event for the confirm button.
-     * Starts the TravelerInfoActivity to proceed with the trip planning.
-     * RETURN        : void
-     */
-    public void onConfirmButtonClick() {
-        DestinationModel selectedLocation = TripState.tripDetail.getLocation();
-
-        if (selectedLocation == null) {
-            // Show a toast if no destination is selected
-            showErrorToast();
-        } else {
-            // Proceed to the next activity since a destination is selected
-            Intent intent = new Intent(LocationSelectionActivity.this, TravelerInfoActivity.class);
-            startActivity(intent);
-        }
-    }
-
-    /**
-     * FUNCTION      : showErrorToast
-     * PURPOSE       : Displays a Toast with a constant error message on the UI thread.
-     * PARAMETERS    : errorMessage - The custom error message to be displayed.
-     * RETURN        : void
-     */
-    private void showErrorToast() {
-        runOnUiThread(() ->
-                Toast.makeText(LocationSelectionActivity.this, "Please select a destination", Toast.LENGTH_LONG).show()
-        );
-    }
-
-    private DestinationModel getSelectedDestination(int checkedId) {
-        for (DestinationModel destination : destinationModels) {
-            if (checkedId == destination.getRadioButtonId()) {
-                return destination;
-            }
-        }
-        return null;
     }
 
     private class LoadDestinationsTask extends AsyncTask<Void, Void, List<DestinationModel>> {
 
         @Override
         protected List<DestinationModel> doInBackground(Void... voids) {
-            return loadDestinationsFromJson();
+            return DestinationDataProvider.loadDestinationsFromJson(LocationSelectionActivity.this);
         }
 
-        @SuppressLint("SetTextI18n")
         @Override
         protected void onPostExecute(List<DestinationModel> result) {
-            // Store destination data
             destinationModels = result;
 
-            // Set destination details dynamically
-            for (DestinationModel destinationModel : destinationModels) {
-                TextView destinationInfo = getDestinationInfoView(destinationModel.getRadioButtonId());
-                if (destinationInfo != null) {
-                    long totalPrice = destinationModel.getPrice() * TripState.tripDetail.getDurationInDays();
-                    destinationInfo.setText("Price: $" + totalPrice);
-
-                    // Make sure to also set the name of the destination
-                    TextView destinationName = getDestinationNameView(destinationModel.getRadioButtonId());
-                    if (destinationName != null) {
-                        destinationName.setText(destinationModel.getName());
-                    }
+            // Modify this part to set the correct dataImage drawable resource ID
+            for (DestinationModel destination : destinationModels) {
+                switch (destination.getName()) {
+                    case "Niagara":
+                        destination.setDataImage(R.drawable.niagara);
+                        break;
+                    case "Miami":
+                        destination.setDataImage(R.drawable.miami);
+                        break;
+                    case "Las Vegas":
+                        destination.setDataImage(R.drawable.las_vegas);
+                        break;
+                    case "London":
+                        destination.setDataImage(R.drawable.london);
+                        break;
+                    case "Sydney":
+                        destination.setDataImage(R.drawable.sydney);
+                        break;
+                    case "Kuala Lumpur":
+                        destination.setDataImage(R.drawable.kualalumpar);
+                        break;
+                    // Add more cases for other destinations if needed
                 }
+
+                // Set total price for each destination
+                destination.setTotalPrice(tripDetail);
             }
-            // Start the countdown timer
+
+            RecyclerView recyclerView = findViewById(R.id.recyclerView);
+            MyAdapter myAdapter = new MyAdapter(LocationSelectionActivity.this, destinationModels);
+
+            // Set item click listener for RecyclerView
+            myAdapter.setOnItemClickListener((view, position, checkedId) -> onRecyclerViewItemClick(position, checkedId));
+
+            recyclerView.setAdapter(myAdapter);
+            recyclerView.setLayoutManager(new LinearLayoutManager(LocationSelectionActivity.this));
+
             new CountdownTimerTask().execute();
         }
     }
 
+
+    @SuppressLint("StaticFieldLeak")
     private class CountdownTimerTask extends AsyncTask<Void, Long, Void> {
         private long startTimeMillis;
+        private Timer timer;
 
         @Override
         protected void onPreExecute() {
             // Set the initial time for the countdown (1 hour)
-            startTimeMillis = System.currentTimeMillis() + 4360000;
+            startTimeMillis = System.currentTimeMillis() + 3600000;
+            timer = new Timer(true);
         }
+
         @Override
         protected Void doInBackground(Void... voids) {
             Timer timer = new Timer(true);
@@ -201,95 +178,25 @@ public class LocationSelectionActivity extends Activity {
 
         @Override
         protected void onProgressUpdate(Long... values) {
-            // Update the UI with the remaining time
             updateCountdownTimer(values[0]);
         }
 
         @Override
         protected void onPostExecute(Void aVoid) {
-            // You can perform any cleanup or final UI updates here
+            if (timer != null) {
+                timer.cancel();
+            }
         }
     }
 
+    @SuppressLint({"SetTextI18n", "DefaultLocale"})
     private void updateCountdownTimer(long remainingTimeMillis) {
         runOnUiThread(() -> {
-            // Convert remaining time to hours, minutes, and seconds
-            long hours = remainingTimeMillis / 3600000;
             long minutes = (remainingTimeMillis % 3600000) / 60000;
             long seconds = (remainingTimeMillis % 60000) / 1000;
 
-            // Update the TextView with the remaining time
             TextView countdownTextView = findViewById(R.id.countdownTextView);
-            countdownTextView.setText("Deals end in: " + String.format("%02d:%02d:%02d", hours, minutes, seconds));
+            countdownTextView.setText("Deals end in: " + String.format("%02d:%02d", minutes, seconds));
         });
-    }
-
-
-
-
-    private TextView getDestinationNameView(int radioButtonId) {
-        // You should implement a method to dynamically get TextView based on the radio button ID
-        // For simplicity, I'll provide a basic example assuming you have TextViews with specific IDs
-
-        if (radioButtonId == R.id.niagaraRadio) {
-            return findViewById(R.id.niagaraName);
-        } else if (radioButtonId == R.id.miamiRadio) {
-            return findViewById(R.id.miamiName);
-        } else if (radioButtonId == R.id.lasVegasRadio) {
-            return findViewById(R.id.lasVegasName);
-        } else {
-            return null;
-        }
-    }
-
-
-    private TextView getDestinationInfoView(int radioButtonId) {
-        // You should implement a method to dynamically get TextView based on the radio button ID
-        // For simplicity, I'll provide a basic example assuming you have TextViews with specific IDs
-
-        if (radioButtonId == R.id.niagaraRadio) {
-            return findViewById(R.id.niagaraInfo);
-        } else if (radioButtonId == R.id.miamiRadio) {
-            return findViewById(R.id.miamiInfo);
-        } else if (radioButtonId == R.id.lasVegasRadio) {
-            return findViewById(R.id.lasVegasInfo);
-        } else {
-            return null;
-        }
-    }
-
-    private List<DestinationModel> loadDestinationsFromJson() {
-        List<DestinationModel> destinationList = new ArrayList<>();
-
-        try {
-            InputStream inputStream = getResources().openRawResource(R.raw.destinations);
-            InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
-            BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
-
-            StringBuilder stringBuilder = new StringBuilder();
-            String line;
-
-            while ((line = bufferedReader.readLine()) != null) {
-                stringBuilder.append(line);
-            }
-
-            JSONArray jsonArray = new JSONArray(stringBuilder.toString());
-
-            for (int i = 0; i < jsonArray.length(); i++) {
-                JSONObject jsonObject = jsonArray.getJSONObject(i);
-                String name = jsonObject.getString("name");
-                int price = jsonObject.getInt("price");
-                int radioButtonId = getResources().getIdentifier(
-                        jsonObject.getString("radioButtonId"), "id", getPackageName());
-
-                destinationList.add(new DestinationModel(name, price, radioButtonId));
-            }
-
-            inputStream.close();
-        } catch (IOException | JSONException e) {
-            e.printStackTrace();
-        }
-
-        return destinationList;
     }
 }

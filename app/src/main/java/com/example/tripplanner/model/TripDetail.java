@@ -6,16 +6,29 @@
  */
 
 package com.example.tripplanner.model;
+
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
+
 public class TripDetail {
-    private DestinationModel location = null;
-    private Date startDate = null;
-    private Date endDate = null;
-    private String buyerName = null;
-    private int numberOfPassengers = 1;
+    private DestinationModel location;
+    private Date startDate;
+    private Date endDate;
+    private String buyerName;
+    private int numberOfPassengers;
+    private long totalPrice;
+
     private boolean isInsuranceSelected;
+
+    public TripDetail() {
+        this.location = null;
+        this.startDate = null;
+        this.endDate =null;
+        this.buyerName =null;
+        this.numberOfPassengers = 3;
+        this.totalPrice = 0;
+    }
 
     /**
      * FUNCTION      : getStartDate
@@ -130,8 +143,7 @@ public class TripDetail {
      * RETURN        : The total price.
      */
     public long getTotalPrice() {
-        // Calculate the total price dynamically based on the current state
-        return location.getPrice() * getDurationInDays() + (isInsuranceSelected() ? 100 : 0);
+        return totalPrice + (isInsuranceSelected() ? 100 : 0);
     }
 
 
@@ -154,4 +166,9 @@ public class TripDetail {
         this.isInsuranceSelected = insuranceSelected;
 
     }
+
+    public void setTotalPrice(long totalPrice) {
+        this.totalPrice = totalPrice;
+    }
+
 }

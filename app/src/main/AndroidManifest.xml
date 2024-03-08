@@ -55,6 +55,11 @@
             android:name=".TravelerInfoActivity"
             android:exported="true"
             android:theme="@style/Theme.TripPlanner" />
+        <activity
+            android:name=".DetailActivity"
+            android:exported="true"
+            android:theme="@style/Theme.AppCompat">
+        </activity>
 
 
     </application>
