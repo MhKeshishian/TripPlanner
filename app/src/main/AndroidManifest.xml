@@ -3,7 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET" />
-
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -23,9 +22,7 @@
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
-
 
         <activity
             android:name=".LoginActivity"
@@ -38,19 +35,17 @@
             android:exported="true"
             android:theme="@style/Theme.AppCompat"/>
 
-        <!-- this activity can be launched by components outside of the app -->
         <activity
             android:name=".MainActivity"
             android:exported="true"
             android:theme="@style/Theme.TripPlanner">
 
-
-        </activity> <!-- this activity can be launched by components outside of the app -->
+        </activity>
 
         <activity
             android:name=".LocationSelectionActivity"
             android:exported="true"
-            android:theme="@style/Theme.TripPlanner" /> <!-- this activity can be launched by components outside of the app -->
+            android:theme="@style/Theme.TripPlanner" />
         <activity
             android:name=".TravelerInfoActivity"
             android:exported="true"
@@ -60,7 +55,6 @@
             android:exported="true"
             android:theme="@style/Theme.AppCompat">
         </activity>
-
 
     </application>
 

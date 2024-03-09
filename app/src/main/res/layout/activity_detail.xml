@@ -40,9 +40,18 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:text="Price"
-            android:padding="20dp"
+            android:padding="10dp"
             android:layout_gravity="center"
             android:id="@+id/totalPrice"
+            style="@style/InfoText"/>
+
+        <TextView
+            android:id="@+id/durationTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:padding="10dp"
+            android:text="Duration of Trip: 0 Days"
             style="@style/InfoText"/>
 
         <TextView
@@ -50,7 +59,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="20dp"
             android:padding="20dp"
             android:text="Description"
             style="@style/InfoText"/>

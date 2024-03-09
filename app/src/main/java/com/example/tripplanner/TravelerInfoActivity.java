@@ -100,11 +100,7 @@ public class TravelerInfoActivity extends Activity {
 
     private void applyAnimations() {
         // Load animations from XML files
-        Animation planTripAnimation = AnimationUtils.loadAnimation(this, R.anim.anim_from_right);
-        Animation numberOfPassengers = AnimationUtils.loadAnimation(this, R.anim.anim_from_right);
-        Animation totalPrice = AnimationUtils.loadAnimation(this, R.anim.anim_from_right);
-        Animation startDate = AnimationUtils.loadAnimation(this, R.anim.anim_from_right);
-        Animation endDate = AnimationUtils.loadAnimation(this, R.anim.anim_from_right);
+        Animation animFromRight = AnimationUtils.loadAnimation(this, R.anim.anim_from_right);
 
         // Find views
         TextView planTripText = findViewById(R.id.selectedDestination);
@@ -114,11 +110,11 @@ public class TravelerInfoActivity extends Activity {
         TextView end = findViewById(R.id.endDateText);
 
         // Apply animations to views
-        planTripText.startAnimation(planTripAnimation);
-        passengers.startAnimation(numberOfPassengers);
-        price.startAnimation(totalPrice);
-        start.startAnimation(startDate);
-        end.startAnimation(endDate);
+        planTripText.startAnimation(animFromRight);
+        passengers.startAnimation(animFromRight);
+        price.startAnimation(animFromRight);
+        start.startAnimation(animFromRight);
+        end.startAnimation(animFromRight);
     }
 
     /**

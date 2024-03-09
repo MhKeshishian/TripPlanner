@@ -2,6 +2,8 @@ package com.example.tripplanner;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -33,6 +35,14 @@ public class DetailActivity extends AppCompatActivity {
             // Set total price in the totalPrice TextView
             totalPriceTextView.setText("Price: $" + totalPrice);
 
+            TextView durationTextView = findViewById(R.id.durationTextView);
+
+            // Assuming that TripState.tripDetail is the instance of TripDetail class
+            int durationInDays = (int) TripState.tripDetail.getDurationInDays();
+
+            // Set the duration in the TextView
+            durationTextView.setText("Duration of Trip: " + durationInDays + " Days");
+
             titleTextView.setText(title);
             descTextView.setText(description);
             detailImage.setImageResource(imageResourceId);
@@ -43,6 +53,8 @@ public class DetailActivity extends AppCompatActivity {
             Button backButton = findViewById(R.id.backButton);
             backButton.setOnClickListener(v -> onBackButtonClick());
         }
+
+        applyAnimations();
     }
 
 
@@ -70,6 +82,24 @@ public class DetailActivity extends AppCompatActivity {
     private void onBackButtonClick() {
         // Handle the back button click to go back to the previous page
         finish();
+    }
+
+    private void applyAnimations() {
+        Animation animFromBottom = AnimationUtils.loadAnimation(this, R.anim.anim_from_bottom);
+
+        // Find views
+        TextView titleTextView = findViewById(R.id.detailTitle);
+        ImageView detailImage = findViewById(R.id.detailImage);
+        TextView totalPriceTextView = findViewById(R.id.totalPrice);
+        TextView durationTextView = findViewById(R.id.durationTextView);
+        TextView descTextView = findViewById(R.id.detailDesc);
+
+        // Apply animations to views
+        titleTextView.startAnimation(animFromBottom);
+        detailImage.startAnimation(animFromBottom);
+        totalPriceTextView.startAnimation(animFromBottom);
+        durationTextView.startAnimation(animFromBottom);
+        descTextView.startAnimation(animFromBottom);
     }
 
 

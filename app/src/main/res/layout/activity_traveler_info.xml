@@ -45,6 +45,7 @@
         android:layout_below="@id/tripItineraryTitle"
         android:layout_alignTop="@+id/destinationLabel"
         android:layout_alignParentEnd="true"
+        android:layout_alignStart="@+id/selectedNumberOfPassengers"
         android:textStyle="normal"
         android:textAlignment="textStart"
         style="@style/InfoText"/>

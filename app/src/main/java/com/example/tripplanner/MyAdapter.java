@@ -48,8 +48,8 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         DestinationModel destinationModel = dataList.get(position);
 
         // Set destination info, including total price
-        long totalPrice = destinationModel.getTotalPrice();
-        holder.destinationInfo.setText("Price: $" + totalPrice);
+        long basePrice = destinationModel.getPrice();
+        holder.destinationInfo.setText("Base Price: $" + basePrice);
 
         // Set destination name
         holder.destinationName.setText(destinationModel.getName());
