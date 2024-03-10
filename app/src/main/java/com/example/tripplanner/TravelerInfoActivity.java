@@ -15,6 +15,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
@@ -61,7 +62,7 @@ public class TravelerInfoActivity extends Activity {
             TripState.tripDetail.setTotalPrice(totalPrice);
         }
 
-        TripDetail tripDetail = TripState.tripDetail;
+
         // Autofill Traveler`s information (Name should be filled later)
         selectedDestination.setText(TripState.tripDetail.getLocation().getName());
         selectedNumberOfPassengers.setText(String.valueOf(TripState.tripDetail.getNumberOfPassengers()));
@@ -212,5 +213,8 @@ public class TravelerInfoActivity extends Activity {
          */
     public void onPassengerInfoDialogClose() {
         this.finishAffinity();
+    }
+
+    public void onCheckDealsButtonClick(View view) {
     }
 }

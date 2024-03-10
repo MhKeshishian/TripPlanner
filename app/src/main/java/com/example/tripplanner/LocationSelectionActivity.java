@@ -31,7 +31,6 @@ import java.util.TimerTask;
 
 public class LocationSelectionActivity extends Activity {
 
-    private Button confirmButton;
     private List<DestinationModel> destinationModels;
 
     @SuppressLint("SetTextI18n")
@@ -49,6 +48,7 @@ public class LocationSelectionActivity extends Activity {
     private void initializeViews() {
         Button backButton = findViewById(R.id.backButton);
     }
+
 
     private void setEventListeners() {
         Button backButton = findViewById(R.id.backButton);
@@ -82,6 +82,12 @@ public class LocationSelectionActivity extends Activity {
     }
 
 
+    /**
+     * FUNCTION      : onBackButtonClick
+     * PURPOSE       : Handles the click event for the back button.
+     *                 Finishes the current activity.
+     * RETURN        : void
+     */
     public void onBackButtonClick() {
         finish();
     }

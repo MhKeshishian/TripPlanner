@@ -1,5 +1,6 @@
 package com.example.tripplanner;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.animation.Animation;
@@ -9,12 +10,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
 import com.example.tripplanner.model.DestinationModel;
 import com.example.tripplanner.model.TripState;
 
 public class DetailActivity extends AppCompatActivity {
 
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -89,19 +92,20 @@ public class DetailActivity extends AppCompatActivity {
 
         // Find views
         TextView titleTextView = findViewById(R.id.detailTitle);
-        ImageView detailImage = findViewById(R.id.detailImage);
+        CardView cardView = findViewById(R.id.cardView2);
         TextView totalPriceTextView = findViewById(R.id.totalPrice);
         TextView durationTextView = findViewById(R.id.durationTextView);
         TextView descTextView = findViewById(R.id.detailDesc);
+        TextView recAdditionalTextView = findViewById(R.id.recAdditional);
+
 
         // Apply animations to views
         titleTextView.startAnimation(animFromBottom);
-        detailImage.startAnimation(animFromBottom);
+        cardView.startAnimation(animFromBottom);
         totalPriceTextView.startAnimation(animFromBottom);
         durationTextView.startAnimation(animFromBottom);
         descTextView.startAnimation(animFromBottom);
+        recAdditionalTextView.startAnimation(animFromBottom);
+
     }
-
-
 }
-

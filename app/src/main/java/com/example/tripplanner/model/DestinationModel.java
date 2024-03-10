@@ -5,7 +5,7 @@ public class DestinationModel {
     private int price;
     private String description;
     private int dataImage;
-    private long totalPrice; // New property to store the total price
+    private long totalPrice;
 
 
     public DestinationModel(String name, int price, String description, int dataImage) {
@@ -37,8 +37,6 @@ public class DestinationModel {
         return totalPrice;
     }
 
-    // Setters for other properties if needed
-
     // Setter for dataImage
     public void setDataImage(int dataImage) {
         this.dataImage = dataImage;
@@ -46,7 +44,6 @@ public class DestinationModel {
 
     // Setter for totalPrice
     public void setTotalPrice(TripDetail tripDetail) {
-        long totalPrice = tripDetail.getNumberOfPassengers() * getPrice() * tripDetail.getDurationInDays();
-        this.totalPrice = totalPrice;
+        this.totalPrice = tripDetail.getNumberOfPassengers() * getPrice() * tripDetail.getDurationInDays();
     }
 }

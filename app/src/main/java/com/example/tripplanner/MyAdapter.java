@@ -1,11 +1,11 @@
 package com.example.tripplanner;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -43,13 +43,14 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     }
 
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         DestinationModel destinationModel = dataList.get(position);
 
         // Set destination info, including total price
         long basePrice = destinationModel.getPrice();
-        holder.destinationInfo.setText("Base Price: $" + basePrice);
+        holder.destinationInfo.setText("Base Price: CA $" + basePrice);
 
         // Set destination name
         holder.destinationName.setText(destinationModel.getName());
@@ -75,7 +76,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         public TextView destinationName;
         public ImageView destinationImage;
         public CardView cardView;
-        public RadioGroup locationRadioGroup;
 
 
         public MyViewHolder(@NonNull View itemView) {
