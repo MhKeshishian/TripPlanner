@@ -1,3 +1,10 @@
+/**
+ * FILE          : MyAdapter.java
+ * AUTHOR        : Mher Keshishian
+ * FIRST VERSION : 2024-03-05
+ * PURPOSE       : Adapter class for RecyclerView to display destination items.
+ */
+
 package com.example.tripplanner;
 
 import android.annotation.SuppressLint;
@@ -22,15 +29,29 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     private List<DestinationModel> dataList;
     private OnItemClickListener onItemClickListener;
 
+    /**
+     * Constructor for MyAdapter.
+     *
+     * @param context  The context of the calling activity or fragment.
+     * @param dataList List of DestinationModel objects to be displayed in the RecyclerView.
+     */
     public MyAdapter(Context context, List<DestinationModel> dataList) {
         this.context = context;
         this.dataList = dataList;
     }
 
+    /**
+     * Set a click listener for item clicks.
+     *
+     * @param listener The click listener to be set.
+     */
     public void setOnItemClickListener(OnItemClickListener listener) {
         this.onItemClickListener = listener;
     }
 
+    /**
+     * Interface definition for a callback to be invoked when an item in the RecyclerView is clicked.
+     */
     public interface OnItemClickListener {
         void onItemClick(View view, int position, int checkedId);
     }
@@ -78,6 +99,11 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         public CardView cardView;
 
 
+        /**
+         * Constructor for MyViewHolder.
+         *
+         * @param itemView The root view of the item layout.
+         */
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
 

@@ -1,3 +1,10 @@
+/**
+ * FILE          : SplashActivity.java
+ * AUTHOR        : Mher Keshishian
+ * FIRST VERSION : 2024-03-05
+ * PURPOSE       : Splash screen activity to display a welcome screen with a delay before navigating to the login activity.
+ */
+
 package com.example.tripplanner;
 
 import android.annotation.SuppressLint;

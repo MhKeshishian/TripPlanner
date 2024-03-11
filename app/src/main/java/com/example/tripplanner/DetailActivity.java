@@ -1,3 +1,10 @@
+/**
+ * FILE          : DetailActivity.java
+ * AUTHOR        : Mher Keshishian
+ * FIRST VERSION : 2024-03-05
+ * PURPOSE       : Display details of a selected trip, including title, description, and animation effects.
+ */
+
 package com.example.tripplanner;
 
 import android.annotation.SuppressLint;
@@ -23,13 +30,16 @@ public class DetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
 
+        // Retrieve intent data
         Intent intent = getIntent();
         if (intent != null) {
+            // Extract trip details from the intent
             String title = intent.getStringExtra("title");
             String description = intent.getStringExtra("description");
             int imageResourceId = intent.getIntExtra("imageResourceId", R.drawable.recycler_detail); // Default image
             long totalPrice = intent.getLongExtra("totalPrice", 0);
 
+            // Find views in the layout
             TextView titleTextView = findViewById(R.id.detailTitle);
             TextView descTextView = findViewById(R.id.detailDesc);
             ImageView detailImage = findViewById(R.id.detailImage);
@@ -46,10 +56,12 @@ public class DetailActivity extends AppCompatActivity {
             // Set the duration in the TextView
             durationTextView.setText("Duration of Trip: " + durationInDays + " Days");
 
+            // Set text and image resources
             titleTextView.setText(title);
             descTextView.setText(description);
             detailImage.setImageResource(imageResourceId);
 
+            // Set click listeners
             Button confirmButton = findViewById(R.id.confirmButton);
             confirmButton.setOnClickListener(v -> onConfirmButtonClick());
 
@@ -60,7 +72,10 @@ public class DetailActivity extends AppCompatActivity {
         applyAnimations();
     }
 
-
+    /**
+     * Handles the click event for the confirm button.
+     * Sets the selected location and proceeds to the next activity.
+     */
     private void onConfirmButtonClick() {
         // Assuming you have information about the selected location
         String selectedLocationName = getIntent().getStringExtra("title");
@@ -82,11 +97,18 @@ public class DetailActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    /**
+     * Handles the click event for the back button.
+     * Finishes the current activity and goes back to the previous page.
+     */
     private void onBackButtonClick() {
         // Handle the back button click to go back to the previous page
         finish();
     }
 
+    /**
+     * Applies animations to various views in the layout.
+     */
     private void applyAnimations() {
         Animation animFromBottom = AnimationUtils.loadAnimation(this, R.anim.anim_from_bottom);
 

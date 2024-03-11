@@ -162,12 +162,12 @@ public class TravelerInfoActivity extends Activity {
         // Proceed with displaying passenger information
         String message =
                 "You have been registered!" + "\n" +
-                        "\n" +
-                        "Ticket issued for: " + travelerName + "\n" +
-                        "Destination: " + tripDetail.getLocation().getName() + "\n" +
-                        "Start Date: " + dateFormat.format(tripDetail.getStartDate()) + "\n" +
-                        "End Date: " + dateFormat.format(tripDetail.getEndDate()) + "\n" +
-                        "Number of Passengers: " + tripDetail.getNumberOfPassengers() + "\n" +
+                        "\n" + "\n" +
+                        "Ticket issued for: " + travelerName + "\n" + "\n" +
+                        "Destination: " + tripDetail.getLocation().getName() + "\n" + "\n" +
+                        "Start Date: " + dateFormat.format(tripDetail.getStartDate()) + "\n" + "\n" +
+                        "End Date: " + dateFormat.format(tripDetail.getEndDate()) + "\n" + "\n" +
+                        "Number of Passengers: " + tripDetail.getNumberOfPassengers() + "\n" + "\n" +
                         "Price: $" + tripDetail.getTotalPrice();
 
         // Create and display a Dialog
@@ -206,11 +206,11 @@ public class TravelerInfoActivity extends Activity {
 
 
     /**
-         * FUNCTION      : onPassengerInfoDialogClose
-         * PURPOSE       : Handles the close event for the passenger information dialog.
-         *                 Finishes the current activity and closes the application.
-         * RETURN        : void
-         */
+     * FUNCTION      : onPassengerInfoDialogClose
+     * PURPOSE       : Handles the close event for the passenger information dialog.
+     *                 Finishes the current activity and closes the application.
+     * RETURN        : void
+     */
     public void onPassengerInfoDialogClose() {
         this.finishAffinity();
     }
