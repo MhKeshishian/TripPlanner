@@ -7,10 +7,14 @@
 
 package com.example.tripplanner;
 
+import android.Manifest;
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
@@ -22,7 +26,12 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+
 import com.example.tripplanner.model.TripState;
+import com.example.tripplanner.service.AmazingService;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -30,6 +39,8 @@ import java.util.Date;
 import java.util.Locale;
 
 public class MainActivity extends Activity implements View.OnClickListener {
+    private static final int LOCATION_PERMISSION_REQUEST_CODE = 100;
+
     private TextView startDateLabel;
     private TextView endDateLabel;
     private Calendar calendar;
@@ -39,6 +50,15 @@ public class MainActivity extends Activity implements View.OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        // Check and request location permissions if necessary
+        if (!checkLocationPermission()) {
+            requestLocationPermission();
+        }
+
+        // Start the AmazingService
+        Intent serviceIntent = new Intent(this, AmazingService.class);
+        startService(serviceIntent);
 
         try {
             Log.d("This", "Initializing widgets...");
@@ -88,6 +108,12 @@ public class MainActivity extends Activity implements View.OnClickListener {
         }
     }
 
+    /**
+     * FUNCTION      : applyAnimations
+     * PURPOSE       : Loads animations and applies them to certain views in the layout.
+     * PARAMETERS    : None
+     * RETURN        : void
+     */
     private void applyAnimations() {
         // Load animations from XML files
         Animation planTripAnimation = AnimationUtils.loadAnimation(this, R.anim.anim_from_right);
@@ -236,5 +262,51 @@ public class MainActivity extends Activity implements View.OnClickListener {
         runOnUiThread(() ->
                 Toast.makeText(MainActivity.this, errorMessage, Toast.LENGTH_LONG).show()
         );
+    }
+
+    /**
+     * FUNCTION      : checkLocationPermission
+     * PURPOSE       : Check if the app has location permission.
+     * RETURN        : boolean - True if the app has permission, false otherwise.
+     */
+    private boolean checkLocationPermission() {
+        int permissionState = ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION);
+        return permissionState == PackageManager.PERMISSION_GRANTED;
+    }
+
+    /**
+     * FUNCTION      : requestLocationPermission
+     * PURPOSE       : Request location permission.
+     * RETURN        : void
+     */
+    private void requestLocationPermission() {
+        ActivityCompat.requestPermissions(this,
+                new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+                LOCATION_PERMISSION_REQUEST_CODE);
+    }
+
+    /**
+     * FUNCTION      : onRequestPermissionsResult
+     * PURPOSE       : Callback for the result from requesting permissions.
+     * PARAMETERS    : requestCode - The request code passed in requestPermissions.
+     *                 permissions - The requested permissions.
+     *                 grantResults - The grant results for the corresponding permissions.
+     * RETURN        : void
+     */
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == LOCATION_PERMISSION_REQUEST_CODE) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                // Permission granted, do your task requiring location access
+            } else {
+                // Permission denied, show a message and offer to navigate to app settings
+                Toast.makeText(this, "Location permission is required for this app to function properly. Please grant the permission in app settings.", Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+                intent.setData(Uri.fromParts("package", getPackageName(), null));
+                startActivity(intent);
+            }
+
+        }
     }
 }

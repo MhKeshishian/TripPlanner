@@ -3,6 +3,18 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.WRITE_CALENDAR" />
+    <uses-permission android:name="android.permission.READ_CALENDAR" />
+
+    <meta-data
+        android:name="com.google.android.geo.API_KEY"
+        android:value="YOUR_GOOGLE_MAPS_API_KEY_HERE" />
+
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -13,6 +25,19 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TripPlanner"
         tools:targetApi="31">
+
+        <!-- Widget Provider -->
+        <receiver
+            android:name=".MyWidgetProvider"
+            android:label="My Widget"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_info" />
+        </receiver>
 
         <activity android:name=".SplashActivity"
             android:exported="true"
@@ -55,6 +80,36 @@
             android:exported="true"
             android:theme="@style/Theme.AppCompat">
         </activity>
+
+        <service
+            android:name=".service.AmazingService"
+            android:exported="false" />
+
+        <receiver android:name=".service.AmazingReceiver"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE"
+                        tools:ignore="BatteryLife" />
+                <action android:name="android.intent.action.TIMEZONE_CHANGED" />
+                <action android:name="com.example.tripplanner.action.AMAZING_TASK_DONE" />
+            </intent-filter>
+        </receiver>
+
+        <!-- Content Provider -->
+        <provider
+            android:name=".provider.TravelContentProvider"
+            android:authorities="com.example.tripplanner.provider"
+            android:exported="false" />
+
+        <!-- version of Google Play services -->
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+
+        <!-- Google Play services library -->
+        <uses-library
+            android:name="org.apache.http.legacy"
+            android:required="false" />
 
     </application>
 

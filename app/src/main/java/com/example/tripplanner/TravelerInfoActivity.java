@@ -13,8 +13,10 @@ import android.app.AlertDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.CalendarContract;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -48,6 +50,8 @@ public class TravelerInfoActivity extends Activity {
         EditText travelerNameEditText = findViewById(R.id.travelerNameEditText);
         Button backButton = findViewById(R.id.backButton);
         finishButton = findViewById(R.id.finishButton);
+        Button addToCalendarButton = findViewById(R.id.addToCalendarButton);
+        addToCalendarButton.setOnClickListener(v -> addToCalendar());
 
         Intent intent = getIntent();
         if (intent != null) {
@@ -99,6 +103,11 @@ public class TravelerInfoActivity extends Activity {
         applyAnimations();
     }
 
+    /**
+     * FUNCTION      : applyAnimations
+     * PURPOSE       : Apply animations to certain views in the activity.
+     * RETURN        : void
+     */
     private void applyAnimations() {
         // Load animations from XML files
         Animation animFromRight = AnimationUtils.loadAnimation(this, R.anim.anim_from_right);
@@ -177,6 +186,7 @@ public class TravelerInfoActivity extends Activity {
                 .setPositiveButton("Close App", (dialog, id) -> onPassengerInfoDialogClose());
         AlertDialog dialog = builder.create();
         dialog.show();
+
     }
 
     /**
@@ -191,6 +201,12 @@ public class TravelerInfoActivity extends Activity {
         );
     }
 
+    /**
+     * FUNCTION      : updateTotalPrice
+     * PURPOSE       : Update the total price based on whether insurance is selected or not.
+     * PARAMETERS    : isInsuranceChecked - A boolean indicating whether insurance is selected.
+     * RETURN        : void
+     */
     @SuppressLint("SetTextI18n")
     private void updateTotalPrice(boolean isInsuranceChecked) {
         TripDetail tripDetail = TripState.tripDetail;
@@ -215,6 +231,43 @@ public class TravelerInfoActivity extends Activity {
         this.finishAffinity();
     }
 
+    /**
+     * FUNCTION      : onCheckDealsButtonClick
+     * PURPOSE       : Handles the click event for the "Check Deals" button.
+     *                 Opens the Expedia webpage.
+     * PARAMETERS    : None
+     * RETURN        : void
+     */
     public void onCheckDealsButtonClick(View view) {
+    }
+
+    /**
+     * FUNCTION      : onCheckDealsButtonClick
+     * PURPOSE       : Handles the click event for the "Check Deals" button.
+     *                 Opens the Expedia webpage.
+     * PARAMETERS    : None
+     * RETURN        : void
+     */
+    private void addToCalendar() {
+        // Get trip details
+        String destination = TripState.tripDetail.getLocation().getName();
+        String startDate = dateFormat.format(TripState.tripDetail.getStartDate());
+        String endDate = dateFormat.format(TripState.tripDetail.getEndDate());
+
+        // Log trip details for debugging
+        Log.d("CalendarDebug", "Destination: " + destination);
+        Log.d("CalendarDebug", "Start Date: " + startDate);
+        Log.d("CalendarDebug", "End Date: " + endDate);
+
+        // Create calendar event
+        Intent intent = new Intent(Intent.ACTION_INSERT)
+                .setData(CalendarContract.Events.CONTENT_URI)
+                .putExtra(CalendarContract.Events.TITLE, "Trip to " + destination)
+                .putExtra(CalendarContract.Events.DESCRIPTION, "Trip details: Start Date - " + startDate + ", End Date - " + endDate)
+                .putExtra(CalendarContract.Events.EVENT_LOCATION, destination)
+                .putExtra(CalendarContract.Events.ALL_DAY, true)
+                .putExtra(Intent.EXTRA_EMAIL, "your_email@example.com");
+
+        startActivity(intent);
     }
 }

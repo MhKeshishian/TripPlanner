@@ -73,8 +73,10 @@ public class DetailActivity extends AppCompatActivity {
     }
 
     /**
-     * Handles the click event for the confirm button.
-     * Sets the selected location and proceeds to the next activity.
+     * FUNCTION      : onConfirmButtonClick
+     * PURPOSE       : Handles the click event for the confirm button.
+     *                 Sets the selected location and proceeds to the next activity.
+     * RETURN        : void
      */
     private void onConfirmButtonClick() {
         // Assuming you have information about the selected location
@@ -94,6 +96,11 @@ public class DetailActivity extends AppCompatActivity {
         intent.putExtra("selectedLocationName", selectedLocationName);
         intent.putExtra("totalPrice", totalPrice);
 
+        int durationInDays = (int) TripState.tripDetail.getDurationInDays();
+
+        // Update the widget UI with the destination name and duration of stay
+        MyWidgetProvider.updateWidgetUI(this, selectedLocationName, durationInDays);
+
         startActivity(intent);
     }
 
@@ -107,7 +114,9 @@ public class DetailActivity extends AppCompatActivity {
     }
 
     /**
-     * Applies animations to various views in the layout.
+     * FUNCTION      : applyAnimations
+     * PURPOSE       : Applies animations to various views in the layout.
+     * RETURN        : void
      */
     private void applyAnimations() {
         Animation animFromBottom = AnimationUtils.loadAnimation(this, R.anim.anim_from_bottom);

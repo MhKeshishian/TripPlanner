@@ -186,17 +186,38 @@
         android:text="@string/check_other_deals_on_expedia"
         style="@style/InfoText"/>
 
+    <TextView
+        android:id="@+id/addToCalendarText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/dealsInfoText"
+        android:layout_alignBaseline ="@+id/addToCalendarButton"
+        android:text="@string/addToYourCalendar"
+        style="@style/InfoText"/>
+
 
     <Button
         android:id="@+id/checkDealsButton"
         style="@style/MyButtonStyle"
         android:layout_below="@id/insuranceCheckBox"
-        android:layout_marginStart="10dp"
+        android:layout_marginStart="30dp"
         android:layout_alignBaseline="@id/dealsInfoText"
         android:layout_toEndOf="@+id/dealsInfoText"
         android:background="@drawable/my_button_gray"
         android:onClick="onCheckDealsButtonClick"
         android:text="@string/check" />
+
+    <Button
+        android:id="@+id/addToCalendarButton"
+        style="@style/MyButtonStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/checkDealsButton"
+        android:layout_alignStart="@+id/checkDealsButton"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/my_button_gray"
+        android:text="@string/add_to_calendar" />
 
     <Button
         android:id="@+id/backButton"

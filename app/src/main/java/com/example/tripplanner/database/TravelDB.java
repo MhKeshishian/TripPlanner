@@ -9,13 +9,13 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class TravelDB extends SQLiteOpenHelper {
 
     private static final int DB_VERSION = 1;
-    private static final String DATABASE_NAME = "TravelDB";
-    private static final String TABLE_NAME = "registeruser";
+    public static final String DATABASE_NAME = "TravelDB";
+    public static final String TABLE_NAME = "registeruser";
     public static final String COL_1 = "ID";
     public static final String COL_2 = "username";
     public static final String COL_3 = "password";
 
-    private static final String CREATE_TABLE = "CREATE TABLE " + TABLE_NAME +
+    public static final String CREATE_TABLE = "CREATE TABLE " + TABLE_NAME +
             " (ID INTEGER PRIMARY  KEY AUTOINCREMENT, " +
             COL_2 + " TEXT, " +
             COL_3 + " TEXT)";

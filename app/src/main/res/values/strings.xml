@@ -47,12 +47,18 @@
     <string name="confirm_password">  Confirm Password</string>
     <string name="check">Check</string>
     <string name="check_other_deals_on_expedia">Check other deals on Expedia</string>
+    <string name="addToYourCalendar">Add schedule to your calendar</string>
     <string name="_15_off">15% off</string>
     <string name="title">Title</string>
     <string name="detail_price">Price</string>
     <string name="duration_of_trip_0_days">Duration of Trip: 0 Days</string>
     <string name="description">Description</string>
     <string name="includes_taxes_and_fees"><![CDATA[includes taxes & fees]]></string>
+    <string name="destination">Destination: N/A</string>
+    <string name="duration">Duration of Stay: N/A</string>
+    <string name="end_date">End Date:</string>
+    <string name="add_to_calendar">Add to Calendar</string>
+
 
 
 </resources>
