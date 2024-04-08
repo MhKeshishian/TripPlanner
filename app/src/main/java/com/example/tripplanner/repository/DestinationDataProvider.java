@@ -43,9 +43,11 @@ public class DestinationDataProvider {
                 String name = jsonObject.getString("name");
                 int price = jsonObject.getInt("price");
                 String description = jsonObject.getString("description");
+                double latitude = jsonObject.getDouble("latitude");
+                double longitude = jsonObject.getDouble("longitude");
                 int dataImage = getDrawableResourceId(context, name.toLowerCase());
 
-                destinationList.add(new DestinationModel(name, price, description, dataImage));
+                destinationList.add(new DestinationModel(name, price, description, dataImage, latitude, longitude));
             }
 
             inputStream.close();

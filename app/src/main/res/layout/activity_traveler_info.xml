@@ -219,6 +219,16 @@
         android:background="@drawable/my_button_gray"
         android:text="@string/add_to_calendar" />
 
+    <org.osmdroid.views.MapView
+        android:id="@+id/mapView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/backButton"
+        android:layout_marginBottom="10dp"
+        android:layout_below="@id/addToCalendarButton"
+        android:layout_marginTop="10dp"
+        android:visibility="visible" />
+
     <Button
         android:id="@+id/backButton"
         style="@style/MyButtonStyle"

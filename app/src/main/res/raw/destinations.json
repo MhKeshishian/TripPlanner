@@ -1,8 +1,44 @@
 [
-  {"name": "Niagara", "price": 75, "description": "Visit the majestic Niagara Falls. Immerse yourself in the awe-inspiring beauty of one of the world's most iconic natural wonders."},
-  {"name": "Miami", "price": 110, "description": "Experience the vibrant culture and beautiful beaches of Miami. Lively nightlife and diverse cuisine await at every turn."},
-  {"name": "Las Vegas", "price": 125, "description": "Explore the dazzling lights and non-stop entertainment of Las Vegas. A city that never sleeps and offers excitement around every corner."},
-  {"name": "London", "price": 130, "description": "Discover the rich history and iconic landmarks of London. Centuries-old architecture meets modern cosmopolitan living."},
-  {"name": "Sydney", "price": 145, "description": "Enjoy the stunning harbor views and explore the iconic attractions of Sydney. A city known for its vibrant arts scene and outdoor beauty."},
-  {"name": "Kuala Lumpur", "price": 120, "description": "Experience the blend of modern and traditional charms of Kuala Lumpur. Soaring skyscrapers coexist with historical treasures, creating a unique and dynamic urban experience."}
+  {
+    "name": "Niagara",
+    "price": 75,
+    "description": "Visit the majestic Niagara Falls. Immerse yourself in the awe-inspiring beauty of one of the world's most iconic natural wonders.",
+    "latitude": 43.08124,
+    "longitude": -79.074972
+  },
+  {
+    "name": "Miami",
+    "price": 110,
+    "description": "Experience the vibrant culture and beautiful beaches of Miami. Lively nightlife and diverse cuisine await at every turn.",
+    "latitude": 25.7617,
+    "longitude": -80.1918
+  },
+  {
+    "name": "Las Vegas",
+    "price": 125,
+    "description": "Explore the dazzling lights and non-stop entertainment of Las Vegas. A city that never sleeps and offers excitement around every corner.",
+    "latitude": 36.1699,
+    "longitude": -115.1398
+  },
+  {
+    "name": "London",
+    "price": 130,
+    "description": "Discover the rich history and iconic landmarks of London. Centuries-old architecture meets modern cosmopolitan living.",
+    "latitude": 51.5074,
+    "longitude": -0.1278
+  },
+  {
+    "name": "Sydney",
+    "price": 145,
+    "description": "Enjoy the stunning harbor views and explore the iconic attractions of Sydney. A city known for its vibrant arts scene and outdoor beauty.",
+    "latitude": -33.8688,
+    "longitude": 151.2093
+  },
+  {
+    "name": "Kuala Lumpur",
+    "price": 120,
+    "description": "Experience the blend of modern and traditional charms of Kuala Lumpur. Soaring skyscrapers coexist with historical treasures, creating a unique and dynamic urban experience.",
+    "latitude": 3.139,
+    "longitude": 101.6869
+  }
 ]

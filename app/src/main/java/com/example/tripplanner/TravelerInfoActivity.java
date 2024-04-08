@@ -7,6 +7,8 @@
 
 package com.example.tripplanner;
 
+import static com.example.tripplanner.repository.DestinationDataProvider.loadDestinationsFromJson;
+
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -26,14 +28,23 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.tripplanner.model.DestinationModel;
 import com.example.tripplanner.model.TripDetail;
 import com.example.tripplanner.model.TripState;
 
+import org.osmdroid.config.Configuration;
+import org.osmdroid.tileprovider.tilesource.TileSourceFactory;
+import org.osmdroid.util.GeoPoint;
+import org.osmdroid.views.MapView;
+
 import java.text.SimpleDateFormat;
+import java.util.List;
 import java.util.Locale;
 
 public class TravelerInfoActivity extends Activity {
     private Button finishButton;
+    private MapView mapView;
+
     private static final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
 
     @SuppressLint("SetTextI18n")
@@ -41,6 +52,30 @@ public class TravelerInfoActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_traveler_info);
+
+        // Initialize the osmdroid configuration
+        Configuration.getInstance().load(getApplicationContext(), getSharedPreferences("osmdroid", MODE_PRIVATE));
+
+        // Set up the MapView
+        mapView = findViewById(R.id.mapView);
+        mapView.setTileSource(TileSourceFactory.MAPNIK);
+
+        // Load the list of destinations from JSON
+        List<DestinationModel> destinationList = loadDestinationsFromJson(this);
+
+        // Check if the destination list is not empty
+        if (!destinationList.isEmpty()) {
+            // Get the coordinates of the first destination
+            double latitude = destinationList.get(0).getLatitude();
+            double longitude = destinationList.get(0).getLongitude();
+
+            // Use destination coordinates to create the GeoPoint
+            GeoPoint destinationPoint = new GeoPoint(latitude, longitude);
+
+            // Set the map center and zoom level
+            mapView.getController().setCenter(destinationPoint);
+            mapView.getController().setZoom(12); // Show the chosen city
+        }
 
         TextView selectedDestination = findViewById(R.id.selectedDestination);
         TextView selectedNumberOfPassengers = findViewById(R.id.selectedNumberOfPassengers);
@@ -101,6 +136,24 @@ public class TravelerInfoActivity extends Activity {
 
         // Apply animations
         applyAnimations();
+    }
+
+    // Lifecycle methods
+    @Override
+    public void onResume() {
+        super.onResume();
+        mapView.onResume();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        mapView.onPause();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
     }
 
     /**

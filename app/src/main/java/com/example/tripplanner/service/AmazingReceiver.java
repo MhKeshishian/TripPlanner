@@ -73,7 +73,7 @@ public class AmazingReceiver extends BroadcastReceiver {
     private void showNoInternetDialog(Context context) {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setTitle("No Internet Connection")
-                .setMessage("This app requires an internet connection. Please connect to the internet.")
+                .setMessage("You need an internet connection for this app. Are you connected??")
                 .setPositiveButton("Close App", (dialog, which) -> {
                     // Quit the app
                     ((MainActivity) context).finishAffinity();
@@ -85,7 +85,7 @@ public class AmazingReceiver extends BroadcastReceiver {
     private void showTimeZoneChangeDialog(Context context) {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setTitle("Time Zone Change")
-                .setMessage("The time zone has changed. The dates of your trip may have shifted. It is recommended to review the date range of your trip.")
+                .setMessage("We recommend you review the trip dates since the time zone has changed.")
                 .setPositiveButton("Close", (dialog, which) -> {
                     dialog.dismiss();
                 })
